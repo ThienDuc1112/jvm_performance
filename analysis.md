@@ -98,25 +98,28 @@ Tốc độ cấp phát bộ nhớ cao hơn tốc độ thu gom của Garbage Co
 
 ## 4. Đề xuất cách sửa lỗi
    Sử dụng StringBuilder (Khuyến nghị)
-   @GetMapping("/process")
-   public String processData() {
-   long startTime = System.currentTimeMillis();
+```java
+@GetMapping("/process")
+public String processData() {
+    long startTime = System.currentTimeMillis();
 
-   StringBuilder sb = new StringBuilder(1_000_000); // Pre-allocate
+    StringBuilder sb = new StringBuilder(1_000_000); // Pre-allocate
 
-   for (int i = 0; i < 150_000; i++) {
-   sb.append(" ").append(i);
-   }
+    for (int i = 0; i < 150_000; i++) {
+        sb.append(" ").append(i);
+    }
 
-   String result = sb.toString();
+    String result = sb.toString();
 
-   long endTime = System.currentTimeMillis();
+    long endTime = System.currentTimeMillis();
 
-   return "Processing finished in "
-   + (endTime - startTime)
-   + "ms. Result length: "
-   + result.length();
-   }
+    return "Processing finished in "
+            + (endTime - startTime)
+            + "ms. Result length: "
+            + result.length();
+}
+```
+
    Lợi ích
    Tiêu chí	Trước tối ưu	Sau tối ưu
    Số lượng String tạo ra	~150.000	1
