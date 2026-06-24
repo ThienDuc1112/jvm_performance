@@ -1,6 +1,6 @@
 Phân tích và tối ưu hóa mã nguồn Java
-1. Vấn đề tìm thấy
-   High GC Churn (Hoạt động GC cao)
+## 1. Vấn đề tìm thấy
+High GC Churn (Hoạt động GC cao)
 
 Việc sử dụng phép toán += trên String trong vòng lặp tạo ra nhiều đối tượng String trung gian không cần thiết.
 
@@ -16,7 +16,7 @@ Thread Blocking (Chặn luồng)
 
 Request sẽ bị chặn cho đến khi vòng lặp hoàn thành, làm giảm khả năng đáp ứng của server.
 
-2. Bằng chứng 
+## 2. Bằng chứng 
 
 VisualVM - Memory Profiler:
 Before loop: ~300MB 
@@ -52,7 +52,7 @@ Kết luận: High GC Churn
 
 ![img_2.png](img_2.png)
 
-3. Nguyên nhân gốc rễ
+## 3. Nguyên nhân gốc rễ
 
 Đoạn mã gây ra vấn đề:
 
@@ -96,7 +96,7 @@ High Allocation Rate
 
 Tốc độ cấp phát bộ nhớ cao hơn tốc độ thu gom của Garbage Collector.
 
-4. Đề xuất cách sửa lỗi
+## 4. Đề xuất cách sửa lỗi
    Sử dụng StringBuilder (Khuyến nghị)
    @GetMapping("/process")
    public String processData() {
